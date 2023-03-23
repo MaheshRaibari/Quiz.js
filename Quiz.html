@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(207, 158, 140);
+        }
+
+        #screen1 {
+            margin-top: 20%;
+            text-align: center;
+            font-size: 30px;
+            border: 2px solid;
+            border-radius: 80%;
+            background-color: red;
+        }
+
+        #screen1 button {
+            cursor: pointer;
+            margin-top: 2rem;
+            padding: 1rem;
+            font-size: 20px;
+        }
+
+        #screen2 {
+            display: none;
+            text-align: center;
+            border: 2px solid;
+            margin-left: 35%;
+            margin-right: 35%;
+            margin-top: 25%;
+            padding: 2rem;
+            background-color: bisque;
+        }
+
+        #screen2 h2 {
+            font-size: 40px;
+        }
+
+        .timer {
+            background-color: black;
+            border-radius: 100%;
+            margin-top: 2rem;
+            color: white;
+            font-size: 20px;
+        }
+
+        .optiond {
+            font-size: 30px;
+        }
+        .question{
+            font-size:30px ;
+            background-color: rgb(182, 123, 45);
+            border-radius: 100%;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="screen1">
+            <h1>Js Quiz</h1>
+            <button>Start Quiz</button>
+        </div>
+
+        <div id="screen2">
+            <h2>Quiz question</h2>
+            <p class="timer"></p>
+            <p class="question"></p>
+            <div class="optiond"></div>
+            <input type="radio" option="">
+            <input type="radio" option="">
+            <input type="radio" option="">
+            <input type="radio" option="">
+        </div>
+    </div>
+    <script>
+
+
+
+        let screen1 = document.querySelector("#screen1 button")
+        let screen = document.querySelector("#screen1")
+        let screen2 = document.querySelector("#screen2")
+        let timer = document.querySelector(".timer")
+        let question = document.querySelector(".question")
+        let optiond = document.querySelector(".optiond")
+        let timer1 = 5;
+
+        let datacounter = 0
+        let dataoptiond = 0
+
+        screen1.onclick = () => {
+            screen.style.display = "none";
+            screen2.style.display = "block";
+            let x = setInterval(animtion, 1000)
+            function animtion() {
+                if (timer1 == 0) {
+
+                    clearInterval(x)
+                }
+                else {
+                    timer.innerHTML = timer1--
+                    ques()
+                    ++datacounter
+                    answ()
+                    ++dataoptiond
+                }
+            }
+        }
+
+
+        const data = [
+            {
+                question: '2+2',
+                answer: 4,
+                options: [5, 4, 3, 2]
+            },
+            {
+                question: '2+3',
+                answer: 5,
+                options: [1, 4, 5, 0]
+            },
+            {
+                question: '2+1',
+                answer: 3,
+                options: [3, 4, 1, 5]
+            },
+            {
+                question: '1+1',
+                answer: 2,
+                options: [4, 1, 2, 5]
+            },
+            {
+                question: '2-2',
+                answer: 0,
+                options: [0, 4, 3, 5]
+            }
+        ]
+        function ques() {
+            question.innerHTML = ""
+            question.innerHTML += data[datacounter].question
+        }
+        function answ() {
+            optiond.innerHTML = ""
+            optiond.innerHTML += data[dataoptiond].options
+            // for (let j = 0; j <= 5; j++) {
+            //     let checkbox = document.createElement(".optiond");
+            //     checkbox.setAttribute('type', 'radio');
+            //     checkbox.setAttribute('name', 'optiond');
+            //     document.querySelector("#screen2.optiond").append(checkbox);
+            // }
+        }
+        // console.log(ques())
+    </script>
+</body>
+
+</html>
